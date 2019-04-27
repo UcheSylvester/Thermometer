@@ -37,12 +37,18 @@
 			// converting the input to number
 			const value = Number(this.value);
 
-			// Rounding fehrenheit degree up to prevent floating point 
-			// issues using =====> Math.round((num + 0.00001) * 100) / 100
-			const fehDegree = Math.round(((value * 1.8 + 32)+0.00001)*100)/100;
-			const kelDegree = Math.round(((value + 273.15)+0.00001)*100)/100;
+			// convert to kelvin and fehrenheit
+			let fehDegree = value * 1.8 + 32;
+			let kelDegree = value + 273.15;
 
-			// changing the innerHTML to content the converted values
+
+			// Rounding fehrenheit and kelvin degrees up to prevent floating point 
+			// issues using =====> Math.round((num + 0.00001) * 100) / 100
+			fehDegree = Math.round((fehDegree + 0.00001) * 100) / 100
+			kelDegree = Math.round((kelDegree + 0.00001) * 100) / 100
+
+
+			// displaying temperature in fehrenheit and kelvin
 			fehrenheit.innerHTML = `${fehDegree} <em>&degF</em>`
 			kelvin.innerHTML = `${kelDegree} <em>K</em>`
 		}
